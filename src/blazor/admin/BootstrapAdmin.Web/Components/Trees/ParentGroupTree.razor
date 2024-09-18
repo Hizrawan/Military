@@ -1,0 +1,12 @@
+﻿@namespace BootstrapAdmin.Web.Components
+
+<TreeView TItem="Group" Items="Items" ShowIcon="true" OnTreeItemClick="OnTreeItemClick" />
+
+@code {
+    RenderFragment<Group> RenderTreeItem => item =>
+    @<div class="d-flex flex-fill">
+        <span class="flex-fill">@item.GroupName</span>
+        <span class="mx-3">@item.GroupCode</span>
+ 
+    </div>;
+}

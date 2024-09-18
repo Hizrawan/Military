@@ -1,0 +1,48 @@
+﻿@page "/Admin/Dicts"
+@using System.Collections.Concurrent;
+@using System.ComponentModel;
+
+<AdminTable TItem="DataAccess.Models.Dict" CustomerSearchModel="DictsSearchModel"
+            OnQueryAsync="OnQueryAsync" OnSaveAsync="OnSaveAsync" OnDeleteAsync="OnDeleteAsync"
+            ShowExtendButtons="false" ShowEditButton="false" ShowDeleteButton="false"
+            AddModalTitle="@AddModalTitle" EditModalTitle="@EditModalTitle">
+    <TableColumns>
+        <TableColumn @bind-Field="context.Category" Filterable="true" Searchable="true" Sortable="true" />
+    </TableColumns>
+    <CustomerSearchTemplate>
+        @if (context is DictsSearchModel searchModel)
+        {
+            <DictSearch @bind-Value="searchModel"></DictSearch>
+        }
+    </CustomerSearchTemplate>
+
+    <DetailRowTemplate>
+        <AdminTable TItem="DataAccess.Models.Dict" CustomerSearchModel="DictsSearchModel"
+                    OnQueryAsync="(options) => OnDetailQueryAsync(options, context)"
+                    OnSaveAsync="OnSaveAsync" OnDeleteAsync="OnDeleteAsync"
+                    ShowSearch="false" ShowDefaultButtons="false"
+                    AddModalTitle="@AddModalTitle" EditModalTitle="@EditModalTitle">
+            <TableColumns Context="Detail">
+                <TableColumn @bind-Field="Detail.Name" Sortable="true" Filterable="true" Searchable="true" />
+                <TableColumn @bind-Field="Detail.Code" Sortable="true" Filterable="true" Searchable="true" />
+                <TableColumn @bind-Field="Detail.Define" Sortable="true" Filterable="true" Searchable="true" />
+                <TableColumn @bind-Field="Detail.IsEnable" Filterable="true" />
+                <TableColumn @bind-Field="Detail.ShowOrder" Sortable="true" />
+                <TableColumn @bind-Field="Detail.param1" Sortable="true" Filterable="true" Searchable="true" Visible="false" />
+                <TableColumn @bind-Field="Detail.param2" Sortable="true" Filterable="true" Searchable="true" Visible="false" />
+                <TableColumn @bind-Field="Detail.param3" Sortable="true" Filterable="true" Searchable="true" Visible="false" />
+                <TableColumn @bind-Field="Detail.param4" Sortable="true" Filterable="true" Searchable="true" Visible="false" />
+                <TableColumn @bind-Field="Detail.param5" Sortable="true" Filterable="true" Searchable="true" Visible="false" />
+                <TableColumn @bind-Field="Detail.param6" Sortable="true" Filterable="true" Searchable="true" Visible="false" />
+                <TableColumn @bind-Field="Detail.param7" Sortable="true" Filterable="true" Searchable="true" Visible="false" />
+                <TableColumn @bind-Field="Detail.param8" Sortable="true" Filterable="true" Searchable="true" Visible="false" />
+            </TableColumns>
+            <EditTemplate Context="v">
+                <DictEditor Value="v" />
+            </EditTemplate>
+        </AdminTable>
+    </DetailRowTemplate>
+    <EditTemplate Context="v">
+        <DictEditor Value="v" />
+    </EditTemplate>
+</AdminTable>

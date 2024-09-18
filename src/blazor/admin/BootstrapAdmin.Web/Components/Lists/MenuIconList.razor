@@ -1,0 +1,11 @@
+﻿@namespace BootstrapAdmin.Web.Components
+
+<div>
+    <FAIconList @bind-Icon="Value" ShowCatalog="true" />
+    <div class="form-footer">
+        <span>@Localizer["SelectIconText"]</span>
+        <i class="@Value fa-fw icon"></i>
+        <DialogCloseButton />
+        <DialogCloseButton Color="Color.Primary" Icon="fa-solid fa-floppy-disk" Text="@Localizer["SelectText"]" OnClickWithoutRender="OnSelctedIcon" />
+    </div>
+</div>

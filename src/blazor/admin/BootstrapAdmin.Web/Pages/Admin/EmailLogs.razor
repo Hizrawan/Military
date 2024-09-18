@@ -1,0 +1,22 @@
+﻿@page "/Admin/EmailLogs"
+
+<AdminTable TItem="SendEmail" IsMultipleSelect="false" IsPagination="true" PageItemsSource="PageItemsSource" SortString="LoginTime desc"
+            ShowDefaultButtons="false" ShowExtendButtons="false" CustomerSearchModel="EmailLogSearchModel"
+            OnQueryAsync="OnQueryAsync">
+    <TableColumns>
+        <TableColumn @bind-Field="@context.EmailTypeValue" Filterable="true"></TableColumn>
+        <TableColumn @bind-Field="@context.SendDate" Filterable="true" ShowTips="true"></TableColumn>
+        <TableColumn @bind-Field="@context.Email" Filterable="true" Searchable="true" ShowTips="true"></TableColumn>
+        <TableColumn @bind-Field="@context.Title" Filterable="true" Searchable="true" ShowTips="true"></TableColumn>
+        <TableColumn @bind-Field="@context.Content" Filterable="true" ShowTips="true"></TableColumn>
+        <TableColumn @bind-Field="@context.EmailStatusValue" Filterable="true"></TableColumn>
+        <TableColumn @bind-Field="@context.FailReason" Searchable="true" ShowTips="true">
+        </TableColumn>
+    </TableColumns>
+    <CustomerSearchTemplate Context="v">
+        @if (v is EmailLogSearchModel m)
+        {
+            <EmailLogSearch @bind-Value="m"></EmailLogSearch>
+        }
+    </CustomerSearchTemplate>
+</AdminTable>

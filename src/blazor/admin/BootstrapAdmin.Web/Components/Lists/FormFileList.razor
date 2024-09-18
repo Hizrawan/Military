@@ -1,0 +1,14 @@
+﻿@namespace BootstrapAdmin.Web.Components
+
+<div class="row g-3">
+    <div class="col-12">
+        @if (UploadType == "1")
+        {
+            <AvatarUpload TValue="string" Accept="image/*" ShowProgress="true" IsMultiple="false" DefaultFileList="PreviewFileList" ShowDownloadButton="true" OnChange="OnSaveFile" OnDelete="OnDeleteFile"></AvatarUpload>
+        }
+        else
+        {
+            <ButtonUpload TValue="string" OnChange="@OnSaveFile" DefaultFileList="PreviewFileList" BrowserButtonText="UpLoad" BrowserButtonIcon="fa-solid fa-cloud-arrow-up" class="mt-12" OnDelete="OnDeleteFile"></ButtonUpload>
+        }
+    </div>
+</div>

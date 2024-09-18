@@ -1,0 +1,64 @@
+﻿@namespace BootstrapAdmin.Web.Components
+
+<div class="row g-3 form-inline">
+    @* <div class="col-12 col-sm-6 col-md-6">
+    <Switch @bind-Value="@Value.IsPub" DisplayText="@Localizer["IsPubEdit"]"></Switch>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6">
+    <Switch @bind-Value="@Value.IsShow" DisplayText="@Localizer["IsShow"]"></Switch>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6">
+    <DateTimePicker @bind-Value="@Value.StartDate" />
+    </div>
+    <div class="col-12 col-sm-6 col-md-6">
+    <DateTimePicker @bind-Value="@Value.EndDate" />
+    </div> *@
+
+    <div class="col-12">
+        <BootstrapInput @bind-Value="Value.ProgramName"></BootstrapInput>
+    </div>
+    <div class="col-12">
+        <BootstrapInput @bind-Value="Value.ProgramAlias"></BootstrapInput>
+    </div>
+    <div class="col-12">
+        <BootstrapInput @bind-Value="Value.ImagePath"></BootstrapInput>
+    </div>
+    <div class="col-12">
+        <BootstrapInput @bind-Value="Value.ProgramPath"></BootstrapInput>
+    </div>
+    <div class="col-12">
+        <BootstrapInput @bind-Value="Value.StartProgram"></BootstrapInput>
+    </div>
+    <div class="col-12">
+        <BootstrapInput @bind-Value="Value.Sort"></BootstrapInput>
+    </div>
+    <div class="col-12">
+        <BootstrapInput @bind-Value="Value.Category"></BootstrapInput>
+    </div>
+    <div class="col-12">
+        <BootstrapInput @bind-Value="Value.LongName"></BootstrapInput>
+    </div>
+    <div class="col-12">
+        <BootstrapInput @bind-Value="Value.Hide"></BootstrapInput>
+    </div>
+    @*
+
+    @if (!string.IsNullOrEmpty(Value.Id))
+    {
+    <Card style="padding: 0;">
+    <HeaderTemplate>@Localizer["FileTitle"]</HeaderTemplate>
+    <BodyTemplate>
+    <RepairFileUpload Value="@Value" FileType="NB" PageFileType="Library.Enums.PageFileType.Document"></RepairFileUpload>
+    </BodyTemplate>
+    </Card>
+    }
+    else
+    {
+    <Card style="padding: 0;">
+    <HeaderTemplate>@Localizer["FileTitle"]</HeaderTemplate>
+    <BodyTemplate>
+    @Localizer["AddStatusContractFileContent"]
+    </BodyTemplate>
+    </Card>
+    } *@
+</div>

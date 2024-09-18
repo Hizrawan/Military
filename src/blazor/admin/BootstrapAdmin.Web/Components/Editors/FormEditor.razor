@@ -1,0 +1,26 @@
+﻿@namespace BootstrapAdmin.Web.Components
+
+<div class="row g-3 form-inline">
+    <div class="col-12">
+        <BootstrapInput @bind-Value="Value.Name"></BootstrapInput>
+    </div>
+    <div class="col-12">
+        <BootstrapInput @bind-Value="Value.Description"></BootstrapInput>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6">
+        <DateTimePicker @bind-Value="@Value.StartDate" />
+    </div>
+    <div class="col-12 col-sm-6 col-md-6">
+        <DateTimePicker @bind-Value="@Value.EndDate" />
+    </div>
+    <div class="col-12">
+        <Switch  @bind-Value="@Value.IsEnable"></Switch>
+     </div>
+    @if (!string.IsNullOrEmpty(Value.Id))
+    {
+        <div class="col-12">
+            <label class="form-label">@Localizer["UploadText"]</label>
+            <FormFileList Id="@Value.Id" TypeName="Form" UploadType="2"/>
+        </div>
+    }
+</div>

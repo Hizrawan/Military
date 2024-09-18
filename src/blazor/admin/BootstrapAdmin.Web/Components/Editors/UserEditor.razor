@@ -1,0 +1,43 @@
+﻿@namespace BootstrapAdmin.Web.Components
+
+<div class="row g-3 form-inline">
+    <div class="col-12 col-sm-6">
+        <BootstrapInput @bind-Value="Value.UserName" IsDisabled="GetDisabled(Value.Id)" ValidateRules="UserRules" PlaceHolder="@UserNamePlaceholder" maxlength="16" />
+    </div>
+    <div class="col-12 col-sm-6">
+        <BootstrapInput @bind-Value="Value.DisplayName" PlaceHolder="@DisplayNamePlaceholder" maxlength="20" />
+    </div>
+    <div class="col-12 col-sm-6">
+        <Select Items="GroupSelectedItems" @bind-Value="Value.GroupsID" ShowSearch="true" IsVirtualize=" true" IsDisabled="GroupSelectIsDisabled" />
+    </div>
+    <div class="col-12 col-sm-6">
+        <BootstrapInput @bind-Value="Value.UserSID" maxlength="10" />
+    </div>
+    <div class="col-12 col-sm-6">
+        <BootstrapInput @bind-Value="Value.UserEmail" maxlength="50" />
+    </div>
+    <div class="col-12 col-sm-6">
+        <BootstrapInput @bind-Value="Value.UserTelPhone" maxlength="100" />
+    </div>
+    <div class="col-12 col-sm-6">
+        <BootstrapInput @bind-Value="Value.UserCellPhone" maxlength="20" />
+    </div>
+    <div class="col-12 col-sm-6">
+        <Switch @bind-Value="Value.IsEnable" />
+    </div>
+    <div class="col-12 col-sm-6">
+        <BootstrapPassword @bind-Value="Value.NewPassword" PlaceHolder="@NewPasswordPlaceholder" maxlength="16" />
+    </div>
+    <div class="col-12 col-sm-6">
+        <BootstrapPassword @bind-Value="Value.ConfirmPassword" PlaceHolder="@ConfirmPasswordPlaceholder" maxlength="16" />
+    </div>
+    <div class="col-12 col-sm-6 col-md-6">
+        <Select @bind-Value="Value.UserType" ShowSearch="true" IsVirtualize="true" Items="UserTypeSelectItems" DisplayText="@Localizer["UserType"]" OnSelectedItemChanged="OnUserTypeSelectedChanged" />
+    </div>
+    <div class="col-12 col-sm-6 col-md-6 align-items-center">
+        <Select @bind-Value="Value.VendorID" ShowSearch="true" IsVirtualize="VendorIDSelectIsVirtualize" Items="VendorIDSelectedItems" DisplayText="@Localizer["VendorID"]" NoSearchDataText="@VendorIDSelectNoSearchDataText" />
+        <Tooltip Placement="Placement.Bottom" Title="@Localizer["VendorToolTip"]" class="ms-2">
+            <i class="fa-solid fa-circle-info" style="font-size: 17px;"></i>
+        </Tooltip>
+    </div>
+</div>

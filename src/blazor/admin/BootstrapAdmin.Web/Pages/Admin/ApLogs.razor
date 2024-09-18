@@ -1,0 +1,19 @@
+﻿@page "/Admin/ApLogs"
+
+<AdminTable TItem="ApLog" IsMultipleSelect="false" IsPagination="true" PageItemsSource="PageItemsSource" SortString="ChgTime desc"
+            ShowDefaultButtons="false" ShowExtendButtons="false" CustomerSearchModel="ApLogSearchModel" ShowAdvancedSearch="false"
+            OnQueryAsync="OnQueryAsync" OnClickRowCallback="OnClickRowCallback">
+    <TableColumns>
+        <TableColumn @bind-Field="@context.PGName" Filterable="true" Searchable="true" ShowTips="true"></TableColumn>
+        <TableColumn @bind-Field="@context.UpdBy" Filterable="true"></TableColumn>
+        <TableColumn @bind-Field="@context.ChgTypeValue" Filterable="true" Searchable="true"></TableColumn>
+        <TableColumn @bind-Field="@context.ChgTime" Filterable="true" Searchable="true"></TableColumn>
+        <TableColumn @bind-Field="@context.ChgIP" Filterable="true"></TableColumn>
+    </TableColumns>
+    <CustomerSearchTemplate Context="v">
+        @if (v is ApLogSearchModel m)
+        {
+            <ApLogSearch @bind-Value="m"></ApLogSearch>
+        }
+    </CustomerSearchTemplate>
+</AdminTable>

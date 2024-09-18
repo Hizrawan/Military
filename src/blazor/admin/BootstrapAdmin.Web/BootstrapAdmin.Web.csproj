@@ -1,0 +1,72 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <IsWebProject>true</IsWebProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Localization\**" />
+    <Content Remove="Localization\**" />
+    <EmbeddedResource Remove="Localization\**" />
+    <None Remove="Localization\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Components\FileUploadList.razor.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Components\FileUploadList.razor" />
+    <Content Remove="Locales\zh-TW.json" />
+    <Content Remove="Properties\zh-TW.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BootstrapBlazor.DataAcces.EntityFrameworkCore" Version="6.0.0" />
+    <PackageReference Include="BootstrapBlazor.FontAwesome" Version="7.5.0" />
+    <PackageReference Include="BootstrapBlazor.Middleware" Version="7.0.0" />
+    <PackageReference Include="BootstrapBlazor.SummerNote" Version="7.3.4" />
+    <PackageReference Include="BootstrapBlazor.TableExport" Version="7.6.1" />
+    <PackageReference Include="Longbow.HealthChecks" Version="6.0.0" />
+    <PackageReference Include="Longbow.Logging" Version="7.0.0" />
+    <PackageReference Include="Longbow.Tasks" Version="7.0.0" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="BootstrapBlazor.Components" />
+    <Using Include="Microsoft.AspNetCore.Components" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Components\FileUploadList.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Components\FileUploadList.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BootstrapAdmin.DataAccess.PetaPoco\BootstrapAdmin.DataAccess.PetaPoco.csproj" />
+    <ProjectReference Include="..\BootstrapAdmin.Library\BootstrapAdmin.Library.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Locales\zh-TW.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Pages\AdminPages\Editors\" />
+    <Folder Include="Pages\AdminPages\News\Searches\" />
+    <Folder Include="Pages\AdminPages\News\Editors\" />
+    <Folder Include="Pages\AdminPages\PermissionControl\Editors\" />
+    <Folder Include="Pages\AdminPages\PermissionControl\Searches\" />
+    <Folder Include="Pages\AdminPages\Searches\" />
+    <Folder Include="wwwroot\images\fronts\" />
+    <Folder Include="wwwroot\upload\Bulletin\1\" />
+    <Folder Include="wwwroot\upload\Bulletin\2\" />
+    <Folder Include="wwwroot\upload\EducationTraining\AI\" />
+    <Folder Include="wwwroot\upload\PhotoGallery\AI\" />
+  </ItemGroup>
+
+</Project>

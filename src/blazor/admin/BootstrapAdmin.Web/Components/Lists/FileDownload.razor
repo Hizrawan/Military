@@ -1,0 +1,26 @@
+﻿@namespace BootstrapAdmin.Web.Components
+@typeparam TValue
+@inherits ButtonUploadBase<TValue>
+  
+<div @attributes="@AdditionalAttributes" class="@ClassString" id="@Id">
+    <div class="upload-body is-list">
+    @if (DownLoadFileList?.Any() ?? false)
+    {
+        <div>@Localizer["FileListText"]</div>
+
+        @foreach (var item in DownLoadFileList!)
+        {
+            <div @key="item" class="@GetItemClassString(item)">
+                <i class="@GetFileFormatClassString(item)"></i>
+                <div class="fn">
+                    <span>@item.GetFileName()</span>
+                    <span>(@item.Size.ToFileSizeString())</span>
+                </div>
+                <div class="upload-buttons">
+                    <i class="@DownloadIconString" @onclick="() => OnDownloadAsync(item)"></i>
+                </div>
+            </div>
+        }
+    }
+    </div>
+</div>

@@ -1,0 +1,46 @@
+﻿@namespace BootstrapAdmin.Web.Components
+
+<div class="row g-3 form-inline">
+    <div class="col-12 col-sm-6 col-md-6">
+        <Switch @bind-Value="@Value.IsPub" DisplayText="@Localizer["IsPubEdit"]"></Switch>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6">
+        <Switch @bind-Value="@Value.IsShow" DisplayText="@Localizer["IsShow"]"></Switch>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6">
+        <DateTimePicker @bind-Value="@Value.StartDate" />
+    </div>
+    <div class="col-12 col-sm-6 col-md-6">
+        <DateTimePicker @bind-Value="@Value.EndDate" />
+    </div>
+    <div class="col-12">
+        <BootstrapInput @bind-Value="Value.Title"></BootstrapInput>
+    </div>
+
+    <div class="col-12">
+        <label class="form-label">@Localizer["Content"]</label>
+        <Editor @bind-Value="@Value.Content" ShowSubmit="false" IsEditor="true"></Editor>
+    </div>
+    <div class="col-12">
+        <label class="form-label">@Localizer["附件上傳"]</label>
+        @if (!string.IsNullOrEmpty(Value.Id))
+        {
+            <Card style="padding: 0;">
+                @* <HeaderTemplate>@Localizer["FileTitle"]</HeaderTemplate> *@
+                <BodyTemplate>
+                    <RepairFileUpload Value="@Value" FileType="@Value.NewsType" PageFileType="Library.Enums.PageFileType.Document"></RepairFileUpload>
+                </BodyTemplate>
+            </Card>
+        }
+        else
+        {
+            <Card style="padding: 0;">
+                @* <HeaderTemplate>@Localizer["FileTitle"]</HeaderTemplate> *@
+                <BodyTemplate>
+                    @Localizer["AddStatusContractFileContent"]
+                </BodyTemplate>
+            </Card>
+        }
+    </div>
+
+</div>

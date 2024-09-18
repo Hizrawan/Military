@@ -1,0 +1,12 @@
+﻿<BootstrapInputGroup>
+    <BootstrapInputGroupIcon Icon="fa-solid fa-fw fa-user" />
+    <BootstrapInput @bind-Value="@PhoneNumber" type="tel" name="phone" maxlength="11" data-bs-toggle="tooltip" title="@Localizer["PhoneNumberNoEmptyText"]" PlaceHolder="@Localizer["PhoneNumberPlaceHolder"]" />
+</BootstrapInputGroup>
+
+<BootstrapInputGroup class="mt-3">
+    <BootstrapInputGroupIcon Icon="fa-solid fa-fw fa-lock" />
+    <BootstrapInput TValue="string" type="number" name="code" maxlength="4" data-bs-toggle="tooltip" title="@Localizer["SendCodeNoEmptyText"]" IsDisabled="IsSendCode" @bind-Value="@Code" PlaceHolder="@Localizer["SendCodePlaceHolder"]" />
+    <Button class="btn-sms" Text="@SendCodeText" OnClick="OnSendCode" LoadingIcon="" IsAsync="true">
+        <Tooltip Title="@Localizer["SendButtionText"]" Placement="Placement.Top" />
+    </Button>
+</BootstrapInputGroup>

@@ -1,0 +1,37 @@
+﻿@page "/Admin/Users"
+
+<AdminTable TItem="DataAccess.Models.User" CustomerSearchModel="UsersSearchModel" IsMultipleSelect="true" OnQueryAsync="@OnQueryAsync"
+            ExtendButtonColumnWidth="270" OnSaveAsync="@OnSaveAsync" OnDeleteAsync="@OnDeleteAsync" AddModalTitle="@AddModalTitle" EditModalTitle="@EditModalTitle">
+    <TableToolbarTemplate>
+
+        <TableToolbarButton TItem="DataAccess.Models.User" IsEnableWhenSelectedOneRow="true" Color="Color.Warning" Icon="fa-solid fa-people-roof" Text="@Localizer["ButtonGroupText"]" OnClickCallback="users => OnAssignmentGroups(users.First())" />
+       
+        <TableToolbarButton TItem="DataAccess.Models.User" IsEnableWhenSelectedOneRow="true" Color="Color.Info" Icon="fa-solid fa-users-gear" Text="@Localizer["ButtonRoleText"]" OnClickCallback="users => OnAssignmentRoles(users.First())" />
+    </TableToolbarTemplate>
+    <TableColumns>
+        <TableColumn @bind-Field="@context.UserName" Sortable="true" Filterable="true" Searchable="true"></TableColumn>
+        <TableColumn @bind-Field="@context.DisplayName" Sortable="true" Filterable="true" Searchable="true"></TableColumn>
+        <TableColumn @bind-Field="@context.RegisterTime" FormatString="yyyy/MM/dd HH:mm:ss" Sortable="true" Filterable="true"></TableColumn>
+        <TableColumn @bind-Field="@context.ApprovedTime" FormatString="yyyy/MM/dd HH:mm:ss" Sortable="true" Filterable="true"></TableColumn>
+        <TableColumn @bind-Field="@context.ApprovedBy" Sortable="true" Filterable="true"></TableColumn>
+        <TableColumn @bind-Field="@context.IsEnable" Filterable="true" Searchable="true" Width="60"></TableColumn>
+        <TableColumn @bind-Field="@context.Description" Sortable="true" Filterable="true"></TableColumn>
+        <TableColumn @bind-Field="@context.UserTypeValue" Sortable="true" Filterable="true"></TableColumn>
+        <TableColumn @bind-Field="@context.VendorName" Sortable="true" Filterable="true"></TableColumn>
+    </TableColumns>
+    <EditTemplate Context="v">
+        <UserEditor Value="v" GroupData="GroupData" UserTypeSelectItems="UserTypeSelectItems" UserTypeDicts="UserTypeDicts" VendorIDData="VendorIDData" />
+    </EditTemplate>
+    <RowButtonTemplate>
+
+        <TableCellButton Size="Size.ExtraSmall" Color="Color.Warning" Icon="fa-solid fa-people-roof" Text="@Localizer["ButtonGroupText"]" OnClick="() => OnAssignmentGroups(context)" />
+
+        <TableCellButton Size="Size.ExtraSmall" Color="Color.Info" Icon="fa-solid fa-users-gear" Text="@Localizer["ButtonRoleText"]" OnClick="() => OnAssignmentRoles(context)" />
+    </RowButtonTemplate>
+    <CustomerSearchTemplate>
+        @if (context is UsersSearchModel searchModel)
+        {
+            <UserSearch @bind-Value="searchModel"></UserSearch>
+        }
+    </CustomerSearchTemplate>
+</AdminTable>

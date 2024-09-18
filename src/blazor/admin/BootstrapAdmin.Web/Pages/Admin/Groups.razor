@@ -1,0 +1,32 @@
+﻿@page "/Admin/Groups"
+
+<AdminTable TItem="DataAccess.Models.Group" ExtendButtonColumnWidth="270" IsTree="true" OnSaveAsync="@OnSaveAsync" OnQueryAsync="@OnQueryAsync" TreeNodeConverter="@TreeNodeConverter" OnTreeExpand="@OnTreeExpand" ModelEqualityComparer="ModelEqualityComparer" OnAfterModifyAsync="OnAfterModifyAsync" OnDeleteAsync="OnDeleteAsync" AddModalTitle="@AddModalTitle" EditModalTitle="@EditModalTitle">
+    <TableToolbarTemplate>
+        
+        <TableToolbarButton TItem="DataAccess.Models.Group" IsEnableWhenSelectedOneRow="true" Color="Color.Warning" Icon="fa-solid fa-user" Text="@Localizer["AssignmentUsersText"]" OnClickCallback="groups => OnAssignmentUsers(groups.First())" />
+        
+        <TableToolbarButton TItem="DataAccess.Models.Group" IsEnableWhenSelectedOneRow="true" Color="Color.Info" Icon="fa-solid fa-users-gear" Text="@Localizer["AssignmentRolesText"]" OnClickCallback="groups => OnAssignmentRoles(groups.First())" />
+    </TableToolbarTemplate>
+    <TableColumns>
+        <TableColumn @bind-Field="@context.GroupName" Sortable="true" Filterable="true" Searchable="true"></TableColumn>
+        <TableColumn @bind-Field="@context.ContactPerson" Sortable="true" Filterable="true" Searchable="true"></TableColumn>
+        <TableColumn @bind-Field="@context.Addr" Sortable="true" Filterable="true" ShowTips="true" Width="150"></TableColumn>
+        <TableColumn @bind-Field="@context.ContactTel" Sortable="true" Filterable="true" ShowTips="true"></TableColumn>
+        <TableColumn @bind-Field="@context.IsEnable" Filterable="true" Searchable="true" Width="60"></TableColumn>
+    </TableColumns>
+    <EditTemplate Context="v">
+        <GroupEditor Value="v" Addresses="Addresses" ParementGroups="ParamentGroups" />
+    </EditTemplate>
+    <RowButtonTemplate>
+      
+        <TableCellButton Size="Size.ExtraSmall" Color="Color.Warning" Icon="fa-solid fa-user" Text="@Localizer["AssignmentUsersText"]" OnClick="() => OnAssignmentUsers(context)" />
+        
+        <TableCellButton Size="Size.ExtraSmall" Color="Color.Info" Icon="fa-solid fa-users-gear" Text="@Localizer["AssignmentRolesText"]" OnClick="() => OnAssignmentRoles(context)" />
+    </RowButtonTemplate>
+    @* <CustomerSearchTemplate>
+    @if (context is GroupsSearchModel searchModel)
+    {
+    <GroupSearch @bind-Value="searchModel"></GroupSearch>
+    }
+    </CustomerSearchTemplate> *@
+</AdminTable>

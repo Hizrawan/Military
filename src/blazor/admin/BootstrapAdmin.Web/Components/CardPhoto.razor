@@ -1,0 +1,91 @@
+﻿@namespace BootstrapAdmin.Web.Components
+@typeparam TValue
+@inherits ButtonUploadBase<TValue>
+
+
+@if (IsShowLabel)
+{
+    <BootstrapLabel required="@Required" ShowLabelTooltip="ShowLabelTooltip" Value="@DisplayText" />
+}
+<div @attributes="@AdditionalAttributes" class="@ClassString" id="@Id" data-bb-previewer-id="@PreviewerId">
+    <div class="@BodyClassString">
+        @foreach (var item in GetUploadFiles())  @*原為 GetUploadFiles(), 為了顯示FileDesc, 使用SDRDefaultFileList*@
+        {
+            <div @key="@item" class="@GetItemClassString(item)">
+                <div class="upload-item-body">
+                    @if (IsImage(item))
+                    {
+                        <img alt="prevUrl" src="@item.PrevUrl" />
+                    }
+                    else if (IconTemplate != null)
+                    {
+                        @IconTemplate(item)
+                    }
+                    else
+                    {
+                        <FileIcon Extension="@item.GetExtension()" />
+                    }
+                </div>
+                @*
+                <div class="upload-item-size"><span>@item.GetFileName()</span> (@item.Size.ToFileSizeString())</div>
+                *@
+                <div id="upload-item-size"><span>(@GetFileDescByFilePath(item.PrevUrl))</span></div>
+                <div class="upload-item-actions">
+                    <div class="btn-group">
+                        @if (ShowZoomButton && IsImage(item))
+                        {
+                            <button type="button" class="btn btn-sm btn-secondary btn-zoom" disabled="@GetDisabledString(item)" @onclick="() => OnClickZoom(item)" aria-label="zoom">
+                                <i class="@ZoomIcon"></i>
+                            </button>
+                        }
+                        @if (ShowDownloadButton)
+                        {
+                            <button type="button" class="btn btn-sm btn-secondary btn-download" disabled="@GetDisabledString(item)" @onclick="() => OnClickDownload(item)" aria-label="download">
+                                <i class="@DownloadIcon"></i>
+                            </button>
+                        }
+                    </div>
+                    @if (ShowDeletedButton)
+                    {
+                        <DynamicElement TagName="button" type="button" class="btn btn-sm btn-outline-danger"
+                                        disabled="@GetDeleteButtonDisabledString(item)" aria-label="delete"
+                                        TriggerClick="@(!IsDisabled)" OnClick="@(() => OnCardFileDelete(item))">
+                            <i class="@RemoveIcon"></i>
+                        </DynamicElement>
+                    }
+                </div>
+                @*
+                @if (GetShowProgress(item))
+                {
+                    <Progress Color="Color.Success" Height="4" Value="@item.ProgressPercent" />
+                }
+                *@
+                <span class="upload-item-label">
+                    <i class="@StatusIconString"></i>
+                    <i class="@DeleteIconString"></i>
+                </span>
+            </div>
+            
+        }
+        @* 這邊隱藏上傳功能
+        @if (CanUpload)
+        {
+            <div class="@CardItemClass">
+                <div class="upload-item-actions btn-browser">
+                    @if (!IsDisabled)
+                    {
+                        <span class="upload-item-plus">
+                            <i class="@AddIcon"></i>
+                        </span>
+                    }
+                </div>
+            </div>
+        }
+        *@
+    </div>
+
+    @if (ShowPreviewList)
+    {
+        <ImagePreviewer Id="@PreviewerId" PreviewList="PreviewList" />
+    }
+</div>

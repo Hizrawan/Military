@@ -1,0 +1,77 @@
+﻿@page "/Admin/Index"
+@*attribute [TabItemOption(Text = "後臺管理", Icon = "fa-solid fa-cog")]*@
+
+<Scroll>
+    <Card>
+        <HeaderTemplate>系統公告</HeaderTemplate>
+        <BodyTemplate>
+            <Repeater TItem="DataAccess.Models.AdminPages.News.Bulletin" Items="@bulletins" 　EmptyText="查無資料!">
+                <ContainerTemplate>
+                    <table class="table">
+                        <tbody>
+                            @context
+                        </tbody>
+                    </table>
+                </ContainerTemplate>
+                <ItemTemplate>
+                    <tr>
+                        <td>
+                            <LinkButton Color="Color.None" Text="@(context.CreateDate.ToString("yyyy/MM/dd") + "　　　"  + context.Title)" OnClick="() => OnBulletinsListViewItemClick(context)"></LinkButton>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+            </Repeater>
+        </BodyTemplate>
+    </Card>
+    @*
+    <ListView TItem="Bulletin" Items="@bulletins" OnListViewItemClick="OnBulletinsListViewItemClick" style="height: auto;">
+    <HeaderTemplate>
+    <div>系統公告</div>
+    </HeaderTemplate>
+    <BodyTemplate>
+    <Card>
+    <BodyTemplate>
+    <div>@context.Title</div>
+    <div>@context.CreateDate.ToString("yyyy/MM/dd")</div>
+    </BodyTemplate>
+    </Card>
+    </BodyTemplate>
+    </ListView>
+    <ListView TItem="string" Items="@messages" style="height: auto;">
+    <HeaderTemplate>
+    <div>待辦事項</div>
+    </HeaderTemplate>
+    <BodyTemplate>
+    <div>@context</div>
+    </BodyTemplate>
+    </ListView>
+    *@
+    <Card>
+        <HeaderTemplate>待辦事項</HeaderTemplate>
+        <BodyTemplate>
+            <a class="nav-link">您有 6 張報修單需要派工！</a>
+        </BodyTemplate>
+    </Card>
+    <Card>
+        <HeaderTemplate>表單下載</HeaderTemplate>
+        <BodyTemplate>
+            <Repeater TItem="Form" Items="@forms" 　EmptyText="查無資料!">
+                <ContainerTemplate>
+                    <table class="table">
+                        <tbody>
+                            @context
+                        </tbody>
+                    </table>
+                </ContainerTemplate>
+                <ItemTemplate>
+                    <tr>
+                        <td>
+                            <LinkButton Color="Color.None" Text="@(context.CreateDate.ToString("yyyy/MM/dd") + "　　　"  + context.Name)" OnClick="() => OnFormsListViewItemClick(context)"></LinkButton>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+            </Repeater>
+        </BodyTemplate>
+    </Card>
+
+</Scroll>

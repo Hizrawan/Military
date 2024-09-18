@@ -1,0 +1,74 @@
+﻿@namespace BootstrapAdmin.Web.Components
+@using BootstrapAdmin.Library.Enums
+@inject IBulletin BulletinService
+
+@switch (PageFileType)
+{
+    case PageFileType.Document:
+        {
+
+            <ValidateForm Model="@((UpDocumentRepairFile) RepairFile)" OnValidSubmit="OnSaveRepairFile">
+                <div class="row g-3 form-inline">
+                    @if (Showuploadbutton)
+                    {
+                        <div class="col-12 col-sm-6 col-md-6">
+
+                            <InputUpload @bind-Value="@(((UpDocumentRepairFile) RepairFile).Document)" ShowLabel="true" />
+                        </div>
+                    }
+                    @* 卡片式的上傳帶刪除功能
+        <div class="col-12">
+        <AvatarUpload @bind-Value="@UpRepairFile.Picture" IsSingle="true" />
+        </div> *@
+                    <div class="col-12 col-sm-6 col-md-6">
+                        @if (Showuploadbutton)
+                        {
+                            <BootstrapInput @bind-Value="@(((UpDocumentRepairFile) RepairFile).FileDesc)" />
+                            <Button ButtonType="ButtonType.Submit" Text="@Localizer["AddUpload"]" style="margin-left: 0.5rem;"></Button>
+                        }
+
+                        @if (ShowBrowseButton)
+                        {
+                            <Button Text="@Localizer["ViewFile"]" OnClick="OnPopViewFile" style="margin-left: 0.5rem;"></Button>
+                        }
+                    </div>
+                </div>
+            </ValidateForm>
+            break;
+        }
+    default:
+        {
+            <ValidateForm Model="@((UpImageRepairFile) RepairFile)" OnValidSubmit="OnSaveRepairFile">
+                <div class="row g-3 form-inline">
+                    @if (Showuploadbutton)
+                    {
+                        <div class="col-12 col-sm-6 col-md-6">
+
+                            <InputUpload @bind-Value="@(((UpImageRepairFile) RepairFile).Picture)" ShowLabel="true" />
+
+                        </div>
+                    }
+                    @* 卡片式的上傳帶刪除功能
+        <div class="col-12">
+        <AvatarUpload @bind-Value="@UpRepairFile.Picture" IsSingle="true" />
+        </div> *@
+                    <div class="col-12 col-sm-6 col-md-6">
+                        @if (Showuploadbutton)
+                        {
+                            <BootstrapInput @bind-Value="@(((UpImageRepairFile) RepairFile).FileDesc)" />
+                            <Button ButtonType="ButtonType.Submit" Text="@Localizer["AddUpload"]" style="margin-left: 0.5rem;"></Button>
+                        }
+                        @if (IsMobile) @*移動設備打開拍照功能*@
+                        {
+                            <Button ButtonType="ButtonType.Button" OnClick="CaremaUpload" Text="@Localizer["CaremaUpload"]" style="margin-left: 0.5rem;"></Button>
+                        }
+                        @if (ShowBrowseButton)
+                        {
+                            <Button Text="@Localizer["ViewFile"]" OnClick="OnPopViewFile" style="margin-left: 0.5rem;"></Button>
+                        }
+                    </div>
+                </div>
+            </ValidateForm>
+            break;
+        }
+}

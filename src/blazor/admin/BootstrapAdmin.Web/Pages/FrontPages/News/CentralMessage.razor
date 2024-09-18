@@ -1,0 +1,49 @@
+﻿@page "/central-message"
+@layout BootstrapAdmin.Web.Shared.FrontLayout
+
+<PageTitle>中心消息</PageTitle>
+<div class="mt-3">
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="FrontIndex"><i class="fa-solid fa-house-chimney"></i> 首頁</a></li>
+            <li class="breadcrumb-item" aria-current="page">最新消息</li>
+            <li class="breadcrumb-item active" aria-current="page">中心消息</li>
+        </ol>
+    </nav>
+</div>
+<div class="container" style="border:1px solid #c0c0c0; border-radius:10px; padding:3%; background-color:#fcf3f1;">
+    <h2 class="fw-bold" style="color:#198754;">
+        中心消息
+    </h2>
+    <hr />
+    <div class="table-responsive mt-3" style="font-size:large;">
+
+        <AdminTable TItem="DataAccess.Models.AdminPages.News.Bulletin"
+                    OnQueryAsync="@OnQueryAsync"
+                    SearchModalTitle="@Localizer["SearchModalTitle"]"
+                    CustomerSearchModel="BulletinSearchModel"
+                    IsPagination="true"
+                    PageItemsSource="@pageItemsSource"
+                    SortString="Title, Content"
+                    ShowExtendButtons="false"
+                    OnClickRowCallback="ComponentOnClick"
+                    ShowDefaultButtons="false"
+                    ShowColumnList="false"
+                    ShowCardView="false"
+                    IsMultipleSelect=false>
+
+
+            <TableColumns>
+                <TableColumn @bind-Field="@context.CreateDate" FormatString="yyyy/MM/dd" Width="180" />
+                <TableColumn @bind-Field="@context.Title" Searchable="true" />
+            </TableColumns>
+
+            <CustomerSearchTemplate>
+                @if (context is BulletinSearchModel searchModel)
+                {
+                    <BulletinFrontSearch @bind-Value="@searchModel"></BulletinFrontSearch>
+                }
+            </CustomerSearchTemplate>
+        </AdminTable>
+    </div>
+</div>

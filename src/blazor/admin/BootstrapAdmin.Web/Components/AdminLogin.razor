@@ -1,0 +1,45 @@
+﻿<div class="wrap white">
+    <div class="container">
+        <form method="post" class="form-signin" action="@PostUrl" @ref="LoginForm">
+            <h2 class="form-signin-heading">@Title</h2>
+            <div class="@ClassString">
+                @if (AllowMobile)
+                {
+                    <div class="login-sms">
+                        <SMSLogin />
+                    </div>
+                }
+                <div class="login-up">
+                    <UserLogin />
+                    <UserVerifyCode />
+                </div>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <Checkbox @bind-Value="RememberPassword" Color="Color.Primary" ShowAfterLabel="true" DisplayText="@Localizer["DisplayText"]" OnValueChanged="OnRememberPassword" />
+                    <!--
+                    <Block Condition="AllowMobile">
+                        <SwitchButton @bind-ToggleState="UseMobileLogin" OnClick="OnClickSwitchButton" OffText="短信驗證登錄" OnText="使用者密碼登錄" />
+                    </Block>
+                    -->
+                </div>
+                <button class="btn btn-login btn-lg btn-block mt-3" data-bs-toggle="tooltip">@Localizer["LoginText"]</button>
+                <div class="d-flex justify-content-between mt-3">
+                    <LinkButton Text="返回首頁" Url="" />
+                    @* <LinkButton Text="@Localizer["ApplyAccount"]" OnClick="OnSignUp" />
+                    <LinkButton Text="@Localizer["ForgetPassword"]" OnClick="OnForgotPassword" /> *@
+                </div>
+                <!--
+                <Block Condition="AllowOAuth">
+                    <Divider Text="其他方式登錄" />
+                    <div class="login-list">
+                        <LinkButton Url="Account/Gitee" Title="使用 Gitee 帳號登錄" ImageUrl="images/gitee.svg" />
+                        <LinkButton Url="Account/Gitee" Title="使用 GitHub 帳號登錄" ImageUrl="images/git.svg" />
+                        <LinkButton Url="#" Title="微信-暫未實現" ImageUrl="images/weixin-2.svg" />
+                        <LinkButton Url="Account/Tencent" Title="使用 QQ 帳號登錄" ImageUrl="images/qq.svg" />
+                        <LinkButton Url="Account/Alipay" Title="使用支付寶帳號登錄" ImageUrl="images/zhifubao.svg" />
+                    </div>
+                </Block>
+                -->
+            </div>
+        </form>
+    </div>
+</div>

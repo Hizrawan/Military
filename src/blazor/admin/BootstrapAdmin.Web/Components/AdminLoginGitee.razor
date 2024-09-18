@@ -1,0 +1,68 @@
+﻿@inherits AdminLogin
+
+<div class="wrap">
+    <div class="container">
+        <section class="login-sidebox">
+            <div class="login-sidebox-content">
+                <div class="login-sidebox-header">
+                    <div class="login-sidebox-logo">
+                        <img alt="logo" src="../favicon.png"><span>Bootstrap Admin</span>
+                    </div>
+                    <h2 class="login-sidebox-subtitle">
+                        通用後臺許可權管理系統
+                    </h2>
+                </div>
+                <div class="login-sidebox-body">
+                    <p>
+                        基於 RBAC 的 NetCore 後臺管理框架，許可權管理，前後臺分離，支援多網站單點登錄，相容所有主流流覽器，內置微信、支付寶、QQ等多種登錄方式，內置多種樣式，可切換至 Blazor 多 Tabs 模式，許可權控制細化到網頁內任意元素（按鈕、表格、文字方塊等等）
+                    </p>
+                </div>
+                <div class="login-sidebox-footer">
+                    <div>開來源文件：<a href="https://gitee.com/LongbowEnterprise/BootstrapAdmin/wikis">碼雲託管平臺 - Wiki</a></div>
+                </div>
+            </div>
+        </section>
+        <section class="login-form">
+            <div class="login-form-header">
+                <h2>登錄</h2>
+                <span class="flex-self-end">
+                    沒有帳號？
+                    <LinkButton Text="申請帳號" OnClick="OnSignUp" />
+                </span>
+            </div>
+            <form method="post" class="form-signin" action="@PostUrl" @ref="LoginForm">
+                <div class="@ClassString">
+                    @if (AllowMobile)
+                    {
+                        <div class="login-sms">
+                            <SMSLogin />
+                        </div>
+                    }
+                    <div class="login-up">
+                        <UserLogin />
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <Checkbox @bind-Value="RememberPassword" Color="Color.Primary" ShowAfterLabel="true" DisplayText="記住密碼自動登錄" OnValueChanged="OnRememberPassword" />
+                    <Block Condition="AllowMobile">
+                        <SwitchButton @bind-ToggleState="UseMobileLogin" OnClick="OnClickSwitchButton" OffText="短信驗證登錄" OnText="使用者密碼登錄" />
+                    </Block>
+                </div>
+                <button class="btn btn-login btn-lg btn-block mt-4" data-bs-toggle="tooltip" title="不填寫密碼預設使用 Gitee 認證">登 錄</button>
+                <div class="d-flex justify-content-center mt-3 mb-4">
+                    <LinkButton Text="已有帳號，忘記密碼？" OnClick="OnForgotPassword" />
+                </div>
+                <Block Condition="AllowOAuth">
+                    <Divider Text="其他方式登錄" />
+                    <div class="login-list">
+                        <LinkButton Url="Account/Gitee" Title="使用 Gitee 帳號登錄" ImageUrl="images/gitee.svg" />
+                        <LinkButton Url="Account/Gitee" Title="使用 GitHub 帳號登錄" ImageUrl="images/git.svg" />
+                        <LinkButton Url="#" Title="微信-暫未實現" ImageUrl="images/weixin-2.svg" />
+                        <LinkButton Url="Account/Tencent" Title="使用 QQ 帳號登錄" ImageUrl="images/qq.svg" />
+                        <LinkButton Url="Account/Alipay" Title="使用支付寶帳號登錄" ImageUrl="images/zhifubao.svg" />
+                    </div>
+                </Block>
+            </form>
+        </section>
+    </div>
+</div>

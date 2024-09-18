@@ -1,0 +1,64 @@
+﻿@page "/Admin/Tasks"
+
+<div class="tab-scroll-body">
+    <Card IsCollapsible="true" HeaderText="@Localizer["TaskIntroduction"]" class="mb-3">
+        <BodyTemplate>
+            <Alert class="mb-0">
+                <p class="font-weight-bold">@Localizer["WorkInstructions"]：</p>
+                <p>@Localizer["DefaultTask"]</p>
+                <p>
+                    <code>
+                        @Localizer["Code1"]
+                    </code>
+                </p>
+                <p>@Localizer["PeriodicTask"]</p>
+                <p>
+                    <code>
+                        @Localizer["Code2"] 
+                        <br />
+                        @Localizer["Code3"] 
+                    </code>
+                </p>
+                <p>@Localizer["CronTask"]</p>
+                <div>
+                    <code>
+                        @Localizer["Code4"]
+                    </code>
+                </div>
+            </Alert>
+        </BodyTemplate>
+    </Card>
+
+    <AdminAlert Text="@Localizer["ForbitModiTask"]" IsShow="IsDemo" />
+
+    <AdminTable TItem="TasksModel" ExtendButtonColumnWidth="270" IsFixedHeader="false" SortString="Status, LastRuntime desc"
+                SelectedRows="SelectedRows"
+                ShowEditButtonCallback="OnShowButtonCallback" ShowDeleteButtonCallback="OnShowButtonCallback"
+                OnQueryAsync="OnQueryAsync" OnDeleteAsync="OnDeleteAsync" OnSaveAsync="OnSaveAsync">
+        <TableColumns>
+            <TableColumn @bind-Field="@context.Name" Sortable="true" Filterable="true" Searchable="true" Width="80"></TableColumn>
+            <TableColumn @bind-Field="@context.CreateTime" Sortable="true" Filterable="true" Searchable="true" FormatString="yyyy-MM-dd HH:mm:ss"></TableColumn>
+            <TableColumn @bind-Field="@context.LastRuntime" Sortable="true" Filterable="true" Searchable="true" FormatString="yyyy-MM-dd HH:mm:ss"></TableColumn>
+            <TableColumn @bind-Field="@context.NextRuntime" Sortable="true" Filterable="true" Searchable="true" FormatString="yyyy-MM-dd HH:mm:ss"></TableColumn>
+            <TableColumn @bind-Field="@context.Trigger" Sortable="true" Filterable="true" Searchable="true" TextWrap="true"></TableColumn>
+            <TableColumn @bind-Field="@context.LastRunResult" Sortable="true" Filterable="true" Searchable="true">
+                <Template Context="v">
+                    <Tag Color="GetResultColor(v.Value)">@FormatResult(v.Value)</Tag>
+                </Template>
+            </TableColumn>
+            <TableColumn @bind-Field="@context.Status" Sortable="true" Filterable="true" Searchable="true">
+                <Template Context="v">
+                    <Tag Color="GetStatusColor(v.Value)" Icon="@GetStatusIcon(v.Value)">@FormatStatus(v.Value)</Tag>
+                </Template>
+            </TableColumn>
+        </TableColumns>
+        <EditTemplate>
+            <TaskEditor @bind-Value="context" />
+        </EditTemplate>
+        <RowButtonTemplate>
+            <TableCellButton Size="Size.ExtraSmall" Color="Color.Warning" Icon="fa-solid fa-pause-circle" Text="@Localizer["ButtonPauseText"]" OnClick="() => OnPause(context)" IsShow="OnCheckTaskStatus(context)" AutoRenderTableWhenClick="true" />
+            <TableCellButton Size="Size.ExtraSmall" Color="Color.Success" Icon="fa-solid fa-play-circle" Text="@Localizer["ButtonRunText"]" OnClick="() => OnRun(context)" IsShow="OnCheckTaskStatus(context)" AutoRenderTableWhenClick="true" />
+            <TableCellButton Size="Size.ExtraSmall" Color="Color.Info" Icon="fa-solid fa-info-circle" Text="@Localizer["ButtonLogText"]" OnClick="() => OnLog(context)" IsShow="OnCheckTaskStatus(context)" AutoRenderTableWhenClick="true" />
+        </RowButtonTemplate>
+    </AdminTable>
+</div>

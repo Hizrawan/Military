@@ -1,0 +1,11 @@
+﻿@namespace BootstrapAdmin.Web.Components
+
+<Table TItem="RepairLog" IsStriped="true" ShowLineNo="true" OnQueryAsync="OnQueryAsync" IsBordered="true">
+    <TableColumns>
+        <TableColumn @bind-Field="@context.CreateDate" />
+        <TableColumn @bind-Field="@context.OldRepairStatusValue" />
+        <TableColumn @bind-Field="@context.NewRepairStatusValue" />
+        <TableColumn @bind-Field="@context.CreateByValue" />
+    </TableColumns>
+</Table>
+

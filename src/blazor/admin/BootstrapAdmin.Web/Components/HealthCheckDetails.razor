@@ -1,0 +1,10 @@
+﻿<Table TItem="SelectedItem" Items="Items" IsBordered="true" IsStriped="true">
+    <TableColumns>
+        <TableColumn @bind-Field="@context.Value" Text="@Localizer["CheckItem"]"></TableColumn>
+        <TableColumn @bind-Field="@context.Text" Text="@Localizer["CheckValue"]" TextWrap="true">
+            <Template Context="v">
+                @GetText(v.Value)
+            </Template>
+        </TableColumn>
+    </TableColumns>
+</Table>

@@ -1,0 +1,19 @@
+﻿@namespace BootstrapAdmin.Web.Components
+
+<div class="row g-3 form-inline">
+    <div class="col-sm-12">
+        <BootstrapInput @bind-Value="Value.Title" ShowLabel="true" />
+    </div>
+    <div class="col-sm-12">
+        <RadioList TValue="string" Items="@DemoValues" @bind-Value="Value.State" ShowLabel="true" DisplayText=@Localizer["State"] />
+    </div>
+
+    <div class="col-12">
+        <BootstrapLabel Value="@Localizer["BulletinPeriod"]"></BootstrapLabel>
+        <BootstrapInputGroup>
+            <DateTimePicker @bind-Value="Value.startDate" ShowLabel="true" />
+            <BootstrapInputGroupLabel DisplayText="～"></BootstrapInputGroupLabel>
+            <DateTimePicker @bind-Value="Value.endDate" ShowLabel="true" />
+        </BootstrapInputGroup>
+    </div>
+</div>

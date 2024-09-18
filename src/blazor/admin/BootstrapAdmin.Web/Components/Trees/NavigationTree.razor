@@ -1,0 +1,21 @@
+﻿@namespace BootstrapAdmin.Web.Components
+@inherits ComponentBase
+
+<div class="tree-menu">
+    <TreeView TItem="Navigation" Items="Items" ShowCheckbox="true" ShowIcon="true" AutoCheckParent="true" AutoCheckChildren="true" OnTreeItemChecked="OnTreeItemChecked"></TreeView>
+
+    <div class="form-footer">
+        <Button Color="Color.Secondary" Icon="fa-solid fa-xmark" Text="@Localizer["CloseText"]" OnClickWithoutRender="OnClickClose" />
+        <Button Color="Color.Primary" Icon="fa-solid fa-check" Text="@Localizer["SaveText"]" OnClickWithoutRender="OnClickSave" />
+    </div>
+</div>
+
+@code {
+    RenderFragment<Navigation> RenderTreeItem => item =>
+    @<div class="d-flex flex-fill">
+        <span class="flex-fill">@item.Name</span>
+        <span class="ms-3">@item.Order</span>
+        <span class="app-type">@item.IsResource.ToDescriptionString()</span>
+        <span class="app-text">@GetApp(item.Application)</span>
+    </div>;
+}

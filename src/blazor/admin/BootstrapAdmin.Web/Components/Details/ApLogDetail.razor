@@ -1,0 +1,10 @@
+﻿@namespace BootstrapAdmin.Web.Components
+
+<Table TItem="ChgDetail" Items="@ChgDetails" IsStriped="true" IsBordered="true">
+    <TableColumns>
+        <TableColumn @bind-Field="@context.ColumnName" />
+        <TableColumn @bind-Field="@context.BEFValue" />
+        <TableColumn @bind-Field="@context.AFTValue" />
+    </TableColumns>
+</Table>
+

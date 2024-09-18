@@ -1,0 +1,44 @@
+﻿@page "/bulletin-detail"
+@layout BootstrapAdmin.Web.Shared.FrontLayout
+
+@if (result != null)
+{
+    <PageTitle>@result.Title</PageTitle>
+
+}
+
+<div class="container" style="border-radius:10px; padding:3%; background-color:#fcf3f1;">
+    <div class="row col-lg-12 col-12">
+        <div style="display:inline;">
+            <h4 style="color:#198496; font-weight:bold; display:inline;">
+                <i class="fa-solid fa-genderless"></i>
+                @if (result != null)
+                {
+                    @result.Title
+                }
+            </h4>
+
+        </div>
+        <p class="mt-3" style="font-weight:bold; text-align:right;">
+            @if (result != null)
+            {
+                @result.CreateDate.ToString("yyyy-MM-dd")
+            }
+        </p>
+        <p>
+            @if (result != null)
+            {
+                @((MarkupString)result.Content)
+            }
+
+        </p>
+        <div class="mt-5">
+            <h5 style="color:#ff6347; font-weight:bold;"><i class="fa-solid fa-file-arrow-down"></i> 檔案下載：</h5>
+            @if (result != null)
+            {
+                <BulletinFileList Id="@result.Id" TypeName="@result.NewsType" UploadType="2" />
+            }
+
+        </div>
+    </div>
+</div>

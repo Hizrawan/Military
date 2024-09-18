@@ -1,0 +1,24 @@
+﻿@typeparam TItem
+
+<Table TItem="TItem" IsBordered="true" IsStriped="true" IsMultipleSelect="IsMultipleSelect" @ref="Instance" ShowLineNo="@ShowLineNo"
+       IsPagination="IsPagination" PageItemsSource="PageItemsSource" IsFixedHeader="IsFixedHeader"
+       IsTree="IsTree" OnTreeExpand="OnTreeExpand!" TreeNodeConverter="TreeNodeConverter!" TreeIcon="fa-solid fa-chevron-circle-right"
+       ShowDefaultButtons="ShowDefaultButtons" ShowAdvancedSearch="ShowAdvancedSearch"
+       ShowEmpty="ShowEmpty" EmptyText="暫無資料" EmptyImage="images/empty.svg" SortString="@SortString"
+       OnQueryAsync="OnQueryAsync!" OnDeleteAsync="OnDeleteAsync!" OnSaveAsync="OnSaveAsync!"
+       ShowSkeleton="true" ShowLoading="ShowLoading" ShowSearch="ShowSearch"
+       ShowToolbar="ShowToolbar" ShowExtendButtons="@(ShowExtendButtons && (ShowExtendEditButton && ShowEditButton && AuthorizeButton("edit") || ShowExtendDeleteButton && ShowDeleteButton && AuthorizeButton("del")))" ShowAddButton="@(ShowAddButton && AuthorizeButton("add"))"
+       ShowDeleteButton="@(ShowDeleteButton && AuthorizeButton("del"))" ShowEditButton="@(ShowEditButton && AuthorizeButton("edit"))"
+       ShowCardView="@ShowCardView" ShowColumnList="@ShowColumnList" ExtendButtonColumnWidth="@ExtendButtonColumnWidth"
+       CustomerSearchModel="CustomerSearchModel" SelectedRows="SelectedRows" ModelEqualityComparer="ModelEqualityComparer!"
+       ShowExtendEditButtonCallback="ShowEditButtonCallback!" ShowExtendDeleteButtonCallback="ShowDeleteButtonCallback!"
+       OnAfterModifyAsync="OnAfterModifyAsync!" AutoGenerateColumns="AutoGenerateColumns"
+       TableToolbarTemplate="TableToolbarTemplate" TableColumns="TableColumns" EditTemplate="EditTemplate!"
+       EditFooterTemplate="EditFooterTemplate" ShowExtendEditButton="@(ShowExtendEditButton && ShowEditButton && AuthorizeButton("edit"))" ShowExtendDeleteButton="@(ShowExtendDeleteButton && ShowDeleteButton && AuthorizeButton("del"))"
+       CustomerSearchTemplate="CustomerSearchTemplate!" RowButtonTemplate="RowButtonTemplate!" OnClickRowCallback="OnClickRowCallback!"
+       ShowToastAfterSaveOrDeleteModel="@ShowToastAfterSaveOrDeleteModel" SearchModalTitle="@SearchModalTitle"
+       EditModalTitle="@EditModalTitle" AddModalTitle="@AddModalTitle"
+       ClickToSelect="@ClickToSelect" DetailRowTemplate=DetailRowTemplate OnAfterSaveAsync="OnAfterSaveAsync!"
+       ScrollMode="@ScrollMode" ShowFooter="ShowFooter" FooterTemplate="FooterTemplate" EditMode="EditModes" PageItems="20" ShowExportButton="@ShowExportButton" ExportButtonDropdownTemplate="@ExportButtonDropdownTemplate">
+</Table>
+

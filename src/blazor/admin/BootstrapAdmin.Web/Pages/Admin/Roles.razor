@@ -1,0 +1,33 @@
+﻿@page "/Admin/Roles"
+
+<AdminTable TItem="DataAccess.Models.Role" CustomerSearchModel="RolesSearchModel" ExtendButtonColumnWidth="325" OnSaveAsync="@OnSaveAsync"
+            OnQueryAsync="OnQueryAsync" OnAfterModifyAsync="OnAfterModifyAsync" OnDeleteAsync="OnDeleteAsync"  AddModalTitle="@AddModalTitle" EditModalTitle="@EditModalTitle">
+    <TableToolbarTemplate>
+        <TableToolbarButton TItem="DataAccess.Models.Role" IsEnableWhenSelectedOneRow="true" Color="Color.Info" Icon="fa-solid fa-user" Text="@Localizer["ButtonUserText"]" OnClickCallback="roles => OnAssignmentUsers(roles.First())" />
+        <TableToolbarButton TItem="DataAccess.Models.Role" IsEnableWhenSelectedOneRow="true" Color="Color.Warning" Icon="fa-solid fa-people-roof" Text="@Localizer["ButtonGroupText"]" OnClickCallback="roles => OnAssignmentGroups(roles.First())" />
+        <TableToolbarButton TItem="DataAccess.Models.Role" IsEnableWhenSelectedOneRow="true" Color="Color.Success" Icon="fa-solid fa-bars" Text="@Localizer["ButtonMenuText"]" OnClickCallback="roles => OnAssignmentMenus(roles.First())" />
+        @* 關閉應用選單功能
+        <TableToolbarButton TItem="DataAccess.Models.Role" IsEnableWhenSelectedOneRow="true" Color="Color.Secondary" Icon="fa-solid fa-cubes" Text="@Localizer["ButtonAppText"]" OnClickCallback="roles => OnAssignmentApps(roles.First())" />
+        *@
+    </TableToolbarTemplate>
+    <TableColumns>
+        <TableColumn @bind-Field="@context.RoleName" Sortable="true" Filterable="true" Searchable="true" Width="120"></TableColumn>
+        <TableColumn @bind-Field="@context.Description" Sortable="true" Filterable="true" Searchable="true"></TableColumn>
+        <TableColumn @bind-Field="@context.IsEnable" Filterable="true" Searchable="true" Width="60"></TableColumn>
+    </TableColumns>
+    <RowButtonTemplate>
+        <TableCellButton Size="Size.ExtraSmall" Color="Color.Info" Icon="fa-solid fa-user" Text="@Localizer["ButtonUserText"]" OnClick="() => OnAssignmentUsers(context)" />
+        <TableCellButton Size="Size.ExtraSmall" Color="Color.Warning" Icon="fa-solid fa-people-roof" Text="@Localizer["ButtonGroupText"]" OnClick="() => OnAssignmentGroups(context)" />
+        <TableCellButton Size="Size.ExtraSmall" Color="Color.Success" Icon="fa-solid fa-bars" Text="@Localizer["ButtonMenuText"]" OnClick="() => OnAssignmentMenus(context)" />
+        @* 關閉應用選單功能
+        <TableCellButton Size="Size.ExtraSmall" Color="Color.Secondary" Icon="fa-solid fa-cubes" Text="@Localizer["ButtonAppText"]" OnClick="() => OnAssignmentApps(context)" />
+        *@
+    </RowButtonTemplate>
+    <CustomerSearchTemplate>
+        @if (context is RolesSearchModel searchModel)
+        {
+            <RoleSearch @bind-Value="@searchModel"></RoleSearch>
+        }
+    </CustomerSearchTemplate>
+</AdminTable>
+

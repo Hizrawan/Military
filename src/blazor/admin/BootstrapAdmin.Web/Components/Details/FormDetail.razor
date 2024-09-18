@@ -1,0 +1,12 @@
+﻿@namespace BootstrapAdmin.Web.Components
+<div class="row g-3 form-inline">
+    <div class="col-12">
+        @Localizer["Name"] <p>@Value.Name</p>
+    </div>
+    <Divider/>
+    <div class="col-12">
+        @Localizer["Description"] <p>@Value.Description</p>
+    </div>
+
+    <FileDownload TValue="string" ShowDownloadButton="true" DownLoadFileList="PreviewFileList" class="mt-12"></FileDownload>
+</div> 

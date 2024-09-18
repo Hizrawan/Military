@@ -1,0 +1,45 @@
+﻿@namespace BootstrapAdmin.Web.Components
+@inject IDict DictService
+
+<div class="row g-3 form-inline">
+    <div class="col-12 col-sm-6 col-md-6">
+        <BootstrapInput @bind-Value="Value.GroupName" ShowLabel="true"></BootstrapInput>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6">
+        <Select @bind-Value="Value.ParentId" IsVirtualize="true" Items="ParementGroups" ShowSearch="true" DisplayText="@ModelLocalizer["ParentId"]"
+                OnSearchTextChanged="OnParementGroupsSearchTextChanged" />
+        @* <GroupTree @bind-Value="Value.ParentId" Lookup="@ParementGroups" DisplayText="@Localizer["ParentId"]"></GroupTree> *@
+    </div>
+    <div class="col-12 col-sm-6 col-md-6">
+        <BootstrapInput @bind-Value="Value.GroupCode" ShowLabel="true"></BootstrapInput>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6">
+        <BootstrapInput @bind-Value="Value.ZipCode" ShowLabel="true" Readonly="true"></BootstrapInput>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6">
+        <Select @bind-Value="Value.City" Items="CountySelect" ShowLabel="true" ShowSearch="true" IsVirtualize="true"
+                OnSelectedItemChanged="OnCountySelectedChanged"></Select>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6">
+        <Select @bind-Value="Value.Area" Items="TownshipSelect" ShowLabel="true" ShowSearch="true" IsVirtualize="true"
+                OnSelectedItemChanged="OnTownshipSelectedChanged"></Select>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6">
+        <BootstrapInput @bind-Value="Value.Addr" ShowLabel="true"></BootstrapInput>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6">
+        <BootstrapInput @bind-Value="Value.Description" ShowLabel="true"></BootstrapInput>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6">
+        <BootstrapInput @bind-Value="Value.ContactPerson" ShowLabel="true"></BootstrapInput>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6">
+        <BootstrapInput @bind-Value="Value.ContactTel" ShowLabel="true"></BootstrapInput>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6">
+        <Select @bind-Value="Value.GroupType" ShowSearch="true" IsVirtualize="true" Items="GroupTypeSelect" DisplayText="@ModelLocalizer["GroupType"]" />
+    </div>
+    <div class="col-12 col-sm-6 col-md-6">
+        <Switch @bind-Value="Value.IsEnable" ShowLabel="true"></Switch>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+﻿<BootstrapInputGroup class="mt-3">    
+    <BootstrapInputGroupIcon Icon="fa-solid fa-fw fa-shield" />
+    <BootstrapInput TValue="string" name="verifyCode" title="@Localizer["VerifyCodeTitle"]" Value="@VerifyCode" PlaceHolder="@Localizer["VerifyCodePlaceHolder"]" />
+    <img src="@_verifyCodeImageSrc" class="img-fluid" draggable="false" role="button" style="max-width: 100px;" @onclick="GetVerifyCode">
+    <input type="hidden" name="verifyCodeAnswer" value="@_verifyCodeAnswer" />
+</BootstrapInputGroup>

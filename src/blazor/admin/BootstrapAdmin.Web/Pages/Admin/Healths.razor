@@ -1,0 +1,32 @@
+﻿@page "/Admin/Healths"
+@using Longbow.HealthChecks
+
+<Card IsShadow="true">
+    <HeaderTemplate>
+        <div class="d-flex align-items-center">
+            <span class="flex-fill">@Localizer["CheckTitle"]</span>
+            <span class="me-3">@Duration</span>
+            <Tag class="me-3" Color="GetTagColor()" Icon="@GetTagIcon()">@GetTagText()</Tag>
+            <Button class="btn-hc" IsAsync="true" OnClickWithoutRender="OnCheck" Icon="fa-solid fa-fw fa-refresh" Text="@Localizer["ReCheckText"]"></Button>
+        </div>
+    </HeaderTemplate>
+    <BodyTemplate>
+        <AdminTable TItem="HealthCheckReportItem" IsFixedHeader="false" @ref="HealthTable" IsMultipleSelect="false"
+                    ShowToolbar="false" ShowDefaultButtons="false" ShowEmpty="false" ShowSearch="false" ShowLoading="true" OnQueryAsync="OnQueryAsync">
+            <TableColumns>
+                <TableColumn @bind-Field="@context.Name" Lookup="@GetNameLookup()" Text="@Localizer["CheckName"]"></TableColumn>
+                <TableColumn @bind-Field="@context.Description" Text="@Localizer["CheckDescription"]"></TableColumn>
+                <TableColumn @bind-Field="@context.Duration" Text="@Localizer["CheckDuration"]"></TableColumn>
+                <TableColumn @bind-Field="@context.Exception" Text="@Localizer["CheckException"]"></TableColumn>
+                <TableColumn @bind-Field="@context.Status" Text="@Localizer["CheckStatus"]">
+                    <Template Context="v">
+                        <Tag Icon="@GetTagIcon(v.Value)" Color="@GetTagColor(v.Value)">@GetTagText(v.Value)</Tag>
+                    </Template>
+                </TableColumn>
+            </TableColumns>
+            <RowButtonTemplate>
+                <TableCellButton Color="Color.Primary" Icon="fa-solid fa-info-circle" Text="@Localizer["CheckDetail"]" OnClick="@(() => OnRowButtonClick(context))" />
+            </RowButtonTemplate>
+        </AdminTable>
+    </BodyTemplate>
+</Card>

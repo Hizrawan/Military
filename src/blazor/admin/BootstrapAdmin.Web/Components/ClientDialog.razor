@@ -1,0 +1,38 @@
+﻿<ValidateForm OnValidSubmit="OnSaveCleint" Model="Value">
+    <div class="row g-3 form-inline">
+        <div class="col-6 col-sm-6">
+            <BootstrapInput @bind-Value="Value.AppId" placeholder="@Localizer["PlaceholderText", 50]" Readonly="Value.AppId != null" ValidateRules="@Validators"></BootstrapInput>
+        </div>
+        <div class="col-6 col-sm-6">
+            <BootstrapInput @bind-Value="Value.AppName" placeholder="@Localizer["PlaceholderText", 50]" Readonly="Value.AppName != null"></BootstrapInput>
+        </div>
+        <div class="col-12 col-sm-12">
+            <BootstrapInput @bind-Value="Value.Title" placeholder="@Localizer["PlaceholderText", 50]"></BootstrapInput>
+        </div>
+        <div class="col-12 col-sm-12">
+            <BootstrapInput @bind-Value="Value.Footer" placeholder="@Localizer["PlaceholderText", 50]"></BootstrapInput>
+        </div>
+        <div class="col-12 col-sm-12">
+            <BootstrapInput @bind-Value="Value.HomeUrl" placeholder="@Localizer["PlaceholderText", 50]"></BootstrapInput>
+        </div>
+        <div class="col-12 col-sm-12">
+            <BootstrapInput @bind-Value="Value.ProfileUrl" placeholder="@Localizer["PlaceholderText", 50]"></BootstrapInput>
+        </div>
+        <div class="col-12 col-sm-12">
+            <BootstrapInput @bind-Value="Value.SettingsUrl" placeholder="@Localizer["PlaceholderText", 50]"></BootstrapInput>
+        </div>
+        <div class="col-12 col-sm-12">
+            <BootstrapInput @bind-Value="Value.NotificationUrl" placeholder="@Localizer["PlaceholderText", 50]"></BootstrapInput>
+        </div>
+        <div class="col-12 col-sm-12">
+            <BootstrapInput @bind-Value="Value.Icon" placeholder="@Localizer["PlaceholderText", 2000]"></BootstrapInput>
+        </div>
+        <div class="col-12 col-sm-12">
+            <BootstrapInput @bind-Value="Value.Favicon" placeholder="@Localizer["PlaceholderText", 2000]"></BootstrapInput>
+        </div>
+    </div>
+    <div class="form-footer">
+        <Button ButtonType="ButtonType.Button" Text="@Localizer["CloseText"]" Icon="fa-solid fa-close" Color="Color.Secondary" OnClick="OnClickClose"></Button>
+        <Button ButtonType="ButtonType.Submit" Text="@Localizer["Save"]" Icon="fa-solid fa-save"></Button>
+    </div>
+</ValidateForm>

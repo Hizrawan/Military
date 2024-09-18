@@ -1,0 +1,196 @@
+﻿@page "/Admin/Settings"
+
+<div class="tab-scroll-body">
+    <AdminCard HeaderText="@Localizer["SetWebName"]" AuthorizeKey="SaveTitle">
+        <AdminAlert Text="@Localizer["ForbitModiWebName"]" IsShow="IsDemo" />
+        <ValidateForm OnValidSubmit="OnSaveTitle" Model="AppInfo">
+            <div class="row g-3 form-inline">
+                <div class="col-12 col-sm-6">
+                    <BootstrapInput @bind-Value="@AppInfo.Title" Readonly="IsDemo" />
+                </div>
+                <Block Condition="!IsDemo">
+                    <div class="col-12 col-sm-6 justify-content-end">
+                        <Button ButtonType="ButtonType.Submit" Icon="fa-solid fa-floppy-disk" Text="@Localizer["SaveText"]" />
+                    </div>
+                </Block>
+            </div>
+        </ValidateForm>
+    </AdminCard>
+
+    <AdminCard HeaderText="@Localizer["SetWebFooter"]" AuthorizeKey="SaveFooter">
+        <AdminAlert Text="@Localizer["ForbitModiWebFooter"]" IsShow="IsDemo" />
+        <ValidateForm OnValidSubmit="OnSaveFooter" Model="AppInfo">
+            <div class="row g-3 form-inline">
+                <div class="col-12 col-sm-6">
+                    <BootstrapInput @bind-Value="@AppInfo.Footer" Readonly="IsDemo" />
+                </div>
+                <Block Condition="!IsDemo">
+                    <div class="col-12 col-sm-6 justify-content-end">
+                        <Button ButtonType="ButtonType.Submit" Icon="fa-solid fa-floppy-disk" Text="@Localizer["SaveText"]" />
+                    </div>
+                </Block>
+            </div>
+        </ValidateForm>
+    </AdminCard>
+
+    <AdminCard HeaderText="@Localizer["SetWebStyle"]" AuthorizeKey="SaveTheme">
+        <AdminAlert Color="Color.Info">
+            <span>@Localizer["Attention"]<b><TabLink Url="/Admin/Profiles" Text="@Localizer["PersonalCenter"]" Icon="fa-solid fa-flag">@Localizer["PersonalCenter"]</TabLink></b> @Localizer["WebSettingStyle"]</span>
+        </AdminAlert>
+        <ValidateForm OnValidSubmit="OnSaveTheme" Model="AppInfo">
+            <div class="row g-3 form-inline">
+                <div class="col-12 col-sm-6">
+                    <Dropdown Items="Themes" @bind-Value="AppInfo.Theme" />
+                </div>
+                <div class="col-12 col-sm-6 justify-content-end">
+                    <Button ButtonType="ButtonType.Submit" Icon="fa-solid fa-floppy-disk" Text="@Localizer["SaveText"]" />
+                </div>
+            </div>
+        </ValidateForm>
+    </AdminCard>
+
+    <AdminCard HeaderText="@Localizer["SetAdminLogin"]" AuthorizeKey="SaveLogin">
+        <AdminAlert Text="@Localizer["GetModiAdminLogin"]" Color="Color.Info" />
+        <ValidateForm OnValidSubmit="OnSaveLogin" Model="AppInfo">
+            <div class="row g-3 form-inline">
+                <div class="col-12 col-sm-6">
+                    <Dropdown Items="Logins" @bind-Value="AppInfo.Login" />
+                </div>
+                <div class="col-12 col-sm-6 justify-content-end">
+                    <Button ButtonType="ButtonType.Submit" Icon="fa-solid fa-floppy-disk" Text="@Localizer["SaveText"]" />
+                </div>
+            </div>
+        </ValidateForm>
+    </AdminCard>
+
+    <AdminCard HeaderText="@Localizer["SetWebForceApp"]" AuthorizeKey="SaveFrontApp">
+        <AdminAlert Text="@Localizer["ForbitModiWebApp"]" IsShow="IsDemo" />
+        <ClientList />
+    </AdminCard>
+
+    <AdminCard HeaderText="@Localizer["SetWebFeature"]" AuthorizeKey="SaveAppFeatures">
+        <ValidateForm OnValidSubmit="OnSaveAppFeatures" Model="AppInfo">
+            <div class="row g-3 form-inline">
+                <div class="col-6 col-sm-6">
+                    <Toggle @bind-Value="AppInfo.SiderbarSetting" OnText="@Localizer["Enable"]" OffText="@Localizer["Disable"]"></Toggle>
+                </div>
+                <div class="col-6 col-sm-6">
+                    <Toggle @bind-Value="AppInfo.TitleSetting" OnText="@Localizer["Enable"]" OffText="@Localizer["Disable"]"></Toggle>
+                </div>
+                <div class="col-6 col-sm-6">
+                    <Toggle @bind-Value="AppInfo.FixHeaderSetting" OnText="@Localizer["Enable"]" OffText="@Localizer["Disable"]"></Toggle>
+                </div>
+                <div class="col-6 col-sm-6">
+                    <Toggle @bind-Value="AppInfo.HealthCheckSetting" OnText="@Localizer["Enable"]" OffText="@Localizer["Disable"]"></Toggle>
+                </div>
+                <div class="col-12 col-sm-12 justify-content-end">
+                    <Button ButtonType="ButtonType.Submit" Icon="fa-solid fa-floppy-disk" Text="@Localizer["SaveText"]" />
+                </div>
+            </div>
+        </ValidateForm>
+    </AdminCard>
+
+    <AdminCard HeaderText="@Localizer["SetWebLogin"]" AuthorizeKey="SaveAppLogin">
+        <ValidateForm OnValidSubmit="OnSaveSaveAppLogin" Model="AppInfo">
+            <div class="row g-3 form-inline">
+                <div class="col-6 col-sm-6">
+                    <Toggle @bind-Value="AppInfo.MobileLogin" OnText="@Localizer["Enable"]" OffText="@Localizer["Disable"]"></Toggle>
+                </div>
+                <div class="col-6 col-sm-6">
+                    <Toggle @bind-Value="AppInfo.OAuthLogin" OnText="@Localizer["Enable"]" OffText="@Localizer["Disable"]"></Toggle>
+                </div>
+                <div class="col-12 col-sm-12 justify-content-end">
+                    <Button ButtonType="ButtonType.Submit" Icon="fa-solid fa-floppy-disk" Text="@Localizer["SaveText"]" />
+                </div>
+            </div>
+        </ValidateForm>
+    </AdminCard>
+
+    <AdminCard HeaderText="@Localizer["SetWebLock"]" AuthorizeKey="SaveAppLockScreen">
+        <ValidateForm OnValidSubmit="OnSaveAppLockScreen" Model="AppInfo">
+            <div class="row g-3 form-inline">
+                <div class="col-6 col-sm-6">
+                    <Toggle @bind-Value="AppInfo.AutoLock" OnText="@Localizer["Enable"]" OffText="@Localizer["Disable"]"></Toggle>
+                </div>
+                <div class="col-6 col-sm-6">
+                    <BootstrapInputNumber @bind-Value="AppInfo.Interval"></BootstrapInputNumber>
+                </div>
+                <div class="col-12 col-sm-12 justify-content-end">
+                    <Button ButtonType="ButtonType.Submit" Icon="fa-solid fa-floppy-disk" Text="@Localizer["SaveText"]" />
+                </div>
+            </div>
+        </ValidateForm>
+    </AdminCard>
+
+    <AdminCard HeaderText="@Localizer["SetWebDefaultApp"]" AuthorizeKey="DefaultApp">
+        <AdminAlert Text="@Localizer["FirstWebLogin"]" Color="Color.Info" />
+        <ValidateForm OnValidSubmit="OnSaveApp" Model="AppInfo">
+            <div class="row g-3 form-inline">
+                <div class="col-12 col-sm-6">
+                    <Toggle @bind-Value="AppInfo.EnableDefaultApp" OnText="@Localizer["Enable"]" OffText="@Localizer["Disable"]" />
+                </div>
+                <div class="col-12 col-sm-6 justify-content-end">
+                    <Button ButtonType="ButtonType.Submit" Icon="fa-solid fa-floppy-disk" Text="@Localizer["SaveText"]" />
+                </div>
+            </div>
+        </ValidateForm>
+    </AdminCard>
+
+    <AdminCard HeaderText="@Localizer["AddrInfo"]" AuthorizeKey="SaveLogCache">
+        <ValidateForm OnValidSubmit="SaveAdressInfo" Model="AppInfo">
+            <div class="row g-3 form-inline">
+                <div class="col-6 col-sm-6">
+                    <Dropdown Items="@IPLocators" @bind-Value="AppInfo.IpLocator" ShowLabel="true"></Dropdown>
+                </div>
+                <div class="col-6 col-sm-6 justify-content-end">
+                    <Button ButtonType="ButtonType.Submit" Icon="fa-solid fa-floppy-disk" Text="@Localizer["SaveText"]" />
+                </div>
+            </div>
+        </ValidateForm>
+    </AdminCard>
+
+    <AdminCard HeaderText="@Localizer["SetWebLog"]" AuthorizeKey="SaveAdressInfo">
+        <ValidateForm OnValidSubmit="OnSaveLogCache" Model="AppInfo">
+            <div class="row g-3 form-inline">
+                <div class="col-6 col-sm-6">
+                    <BootstrapInputNumber @bind-Value="AppInfo.ExceptionExpired"></BootstrapInputNumber>
+                </div>
+                <div class="col-6 col-sm-6">
+                    <BootstrapInputNumber @bind-Value="AppInfo.OperateExpired"></BootstrapInputNumber>
+                </div>
+                <div class="col-6 col-sm-6">
+                    <BootstrapInputNumber @bind-Value="AppInfo.LoginExpired"></BootstrapInputNumber>
+                </div>
+                <div class="col-6 col-sm-6">
+                    <BootstrapInputNumber @bind-Value="AppInfo.AccessExpired"></BootstrapInputNumber>
+                </div>
+                <div class="col-6 col-sm-6">
+                    <BootstrapInputNumber @bind-Value="AppInfo.CookieExpired"></BootstrapInputNumber>
+                </div>
+                <div class="col-6 col-sm-6">
+                    <BootstrapInputNumber @bind-Value="AppInfo.IPCacheExpired"></BootstrapInputNumber>
+                </div>
+                <div class="col-12 col-sm-12 justify-content-end">
+                    <Button ButtonType="ButtonType.Submit" Icon="fa-solid fa-floppy-disk" Text="@Localizer["SaveText"]" />
+                </div>
+            </div>
+        </ValidateForm>
+    </AdminCard>
+
+    <AdminCard HeaderText="@Localizer["SetWebDemo"]" AuthorizeKey="SaveDemo">
+        <AdminAlert Text="@Localizer["ForbitOnDemo"]" Color="Color.Info" />
+        <ValidateForm OnValidSubmit="OnSaveDemo" Model="AppInfo">
+            <div class="row g-3 form-inline">
+                <div class="col-12 col-sm-4">
+                    <Toggle @bind-Value="AppInfo.IsDemo" OnText="@Localizer["Enable"]" OffText="@Localizer["Disable"]" />
+                </div>
+                <div class="col-12 col-sm-4">
+                    <BootstrapPassword @bind-Value="@AppInfo.AuthCode" />
+                </div>
+                <div class="col-12 col-sm-4 justify-content-end">
+                    <Button ButtonType="ButtonType.Submit" Icon="fa-solid fa-floppy-disk" Text="@Localizer["SaveText"]" />
+                </div>
+            </div>
+        </ValidateForm>
+    </AdminCard>
+</div>
