@@ -1,0 +1,35 @@
+﻿@page "/admin-pages/news/bulletin"
+
+<AdminTable TItem="DataAccess.Models.AdminPages.News.Bulletin"
+            OnQueryAsync="@OnQueryAsync" OnSaveAsync="@OnSaveAsync" OnDeleteAsync="@OnDeleteAsync"
+            AddModalTitle="@addModalTitle" EditModalTitle="@editModalTitle"
+            CustomerSearchModel="BulletinSearchModel"
+            PageItemsSource="@pageItemsSource"
+            ShowDefaultButtons="true"
+            ShowExtendButtons="true"
+            ShowExtendDeleteButton="true"
+            ShowExtendEditButton="true"
+            ShowAddButton="true"
+            SortString="Title, Content"
+            IsMultipleSelect="false"
+            IsPagination="true"
+            ShowLineNo="true">
+    <TableColumns>
+        @* <TableColumn @bind-Field="context.Id" Width="110" Filterable="true" Searchable="true" Sortable="true"></TableColumn> *@
+        <TableColumn @bind-Field="context.Title" Filterable="true" Searchable="true" Sortable="true"></TableColumn>
+        <TableColumn @bind-Field="context.StartDate" Width="150" FormatString="yyyy/MM/dd" Filterable="true" Searchable="true" Sortable="true"></TableColumn>
+        <TableColumn @bind-Field="context.EndDate" Width="150" FormatString="yyyy/MM/dd" Filterable="true" Searchable="true" Sortable="true"></TableColumn>
+
+
+    </TableColumns>
+    <EditTemplate Context="v">
+        <BulletinEditor Value="v" />
+    </EditTemplate>
+    <CustomerSearchTemplate>
+        @if (context is BulletinSearchModel searchModel)
+        {
+            <BulletinSearch @bind-Value="@searchModel"></BulletinSearch>
+        }
+    </CustomerSearchTemplate>
+</AdminTable>
+

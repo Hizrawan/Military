@@ -15,5 +15,5 @@ public interface IDBManager
     /// 
     /// </summary>
     /// <returns></returns>
-    IDatabase Create(string connectionName = "VSPCDB", bool keepAlive = false);
+    IDatabase Create(string connectionName = "MILITARYDB", bool keepAlive = false);
 }

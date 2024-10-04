@@ -186,7 +186,6 @@ internal class UserService : IUser
         }
         return ret;
     }
-
     public bool SaveDisplayName(string userName, string displayName)
     {
         using var db = DBManager.Create();

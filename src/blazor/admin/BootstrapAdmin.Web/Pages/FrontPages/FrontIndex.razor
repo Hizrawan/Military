@@ -3,14 +3,31 @@
 @layout BootstrapAdmin.Web.Shared.FrontLayout
 
 
-<PageTitle>新竹縣志願服務推廣中心</PageTitle>
+<PageTitle>Tentara Nasional Indonesia</PageTitle>
 
-
-<div class="vstack gap-3 mt-5">
+<div class="row mt-5" style="border-radius:10px; padding:40px 0px 20px 0px; background-color:#fcf3f1;">
     <div class="row bg-opacity-10">
-        <div class="col-md-8 vstack gap-3" style="justify-content: center;">
+        <div class="col-md-7 vstack gap-3" style="justify-content: center;">
+
+            <div>
+                <Carousel Width="700" IsFade="true">
+                    <CarouselItem Caption="Danlanud Sam Ratulangi Meninjau Gladi Bersih HUT Ke-79 TNI">
+                        <img src="./images/timthumb.jpeg" alt="demo-image" />
+                    </CarouselItem>
+                    <CarouselItem Caption="Dandim 0732/Sleman Ikuti Ziarah Nasional Peringatan HUT Ke-79 TNI Di TMP Kusumanegara Yogyakarta">
+                        <img src="./images/timthumb (1).jpeg" alt="demo-image" />
+                    </CarouselItem>
+                    <CarouselItem Caption="Jelang HUT Ke-79 TNI, Lanud Sam Ratulangi Laksanakan Doa Bersama">
+                        <img src="./images/timthumb (2).jpeg" alt="demo-image" />
+                    </CarouselItem>
+                </Carousel>
+            </div>
+            <div class="text-end">
+            </div>
+        </div>
+        <div class="col-md-5">
             <h2 class="fw-bold" style="color:#DC3545;">
-                @Localizer["NewestInfomation"]
+                @Localizer["Pengumuman"]
             </h2>
             <div>
                 @if (Bulletins != null)
@@ -38,79 +55,140 @@
             </div>
             <div class="text-end">
                 <Button Color="Color.Secondary">
-                    <a href="central-message" class="fa-solid fa-plus" aria-current="page"> 更多中心消息</a>
+                    <a href="central-message" class="fa-solid fa-plus" aria-current="page"> Click for More</a>
                 </Button>
             </div>
-        </div>
-        <div class="col-md-4" style="align-content:center;">
-
-            <ImageViewer Url="/images/fronts/banner03.png" @onclick="@(args => ComponentOnClick(imagedetail))" FitMode="ObjectFitMode.Contain" class="img-fluid" style="padding:10px; cursor:pointer;" title="專長志工徵稿" />
-
         </div>
     </div>
 </div>
 
-<div class="row mt-5" style="border-radius:10px; padding:40px 0px 20px 0px; background-color:#fcf3f1;">
-    <div class="col-md-12 vstack gap-3" style="padding-left: 15px;">
-        <h2 class="fw-bold" style="color:#198754;">
-            @Localizer["EducationTraining"]
-        </h2>
-        <div>
-            @if (EducationTrainings != null)
-            {
-                foreach (var item in EducationTrainings)
+<div class="row mt-5" style="border-radius:10px; padding:40px 0px 20px 0px;">
+    <div class="row bg-opacity-10">
+        <div class="col-md-8 vstack gap-3" style="justify-content: center;">
+            <h2 class="fw-bold" style="color:#198754;">
+                @Localizer["Berita Terkini"]
+            </h2>
+            <div>
+                @if (Bulletins != null)
                 {
-                    var content = RemoveHtmlTags(item.Content).Length > 50 ? RemoveHtmlTags(item.Content).Substring(0, 50) + "..." : RemoveHtmlTags(item.Content);
-
-                    <div class="row align-items-center py-3" style="@DataRowBackgroudColorKeyValues[(item.GetType().Name, $"{item.Id}")]"
-                         @onclick="@(args => ComponentEduTrainOnClick(item))"
-                         @onmouseover="@(args => OnDataRowMouseOver(args, item.GetType().Name, item.Id))"
-                         @onmouseout="@(args => OnDataRowMouseOut(args, item.GetType().Name, item.Id))">
-                        <div class="col-10 h5 fw-bold">
-                            <i class="fa-solid fa-genderless" /> @item.Title
-                        </div>
-                        <div class="col-2">
-                            @item.CreateDate.ToString("yyyy/MM/dd")
-                        </div>
-                    </div>
-                    @if (!item.Equals(Events.Last()))
+                    foreach (var item in Bulletins)
                     {
-                        <Divider class="m-0" />
+                        var content = RemoveHtmlTags(item.Content).Length > 50 ? RemoveHtmlTags(item.Content).Substring(0, 50) + "..." : RemoveHtmlTags(item.Content);
+                        <div class="row align-items-center py-3" style="@DataRowBackgroudColorKeyValues[(item.GetType().Name, $"{item.Id}")]"
+                             @onclick="@(args => ComponentOnClick(item))"
+                             @onmouseover="@(args => OnDataRowMouseOver(args, item.GetType().Name, item.Id))"
+                             @onmouseout="@(args => OnDataRowMouseOut(args, item.GetType().Name, item.Id))">
+                            <div class="col-md-10 h5 fw-bold" style="color:#198496;">
+                                <i class="fa-solid fa-genderless" /> @item.Title
+                            </div>
+                            <div class="col-md-2">
+                                @item.CreateDate.ToString("yyyy/MM/dd")
+                            </div>
+                        </div>
+                        @if (!item.Equals(Bulletins.Last()))
+                        {
+                            <Divider class="m-0" />
+                        }
                     }
                 }
-            }
+            </div>
+            <div class="text-end">
+                <Button Color="Color.Secondary">
+                    <a href="central-message" class="fa-solid fa-plus" aria-current="page"> Click for More</a>
+                </Button>
+            </div>
         </div>
-        <div class="text-end">
-            <Button Color="Color.Secondary">
-                <a href="education-training" class="fa-solid fa-plus" aria-current="page"> 更多教育訓練公告</a>
-            </Button>
+
+    </div>
+</div>
+
+<div class="row mt-5" style="border-radius:10px; padding:40px 0px 20px 0px; background-color:#fcf3f1;">
+    <div class="row bg-opacity-10">
+        <div class="col-md-8 vstack gap-3" style="justify-content: center;">
+            <h2 class="fw-bold" style="color:#DC3545;">
+                @Localizer["Berita Populer"]
+            </h2>
+            <div>
+                @if (Bulletins != null)
+                {
+                    foreach (var item in Bulletins)
+                    {
+                        var content = RemoveHtmlTags(item.Content).Length > 50 ? RemoveHtmlTags(item.Content).Substring(0, 50) + "..." : RemoveHtmlTags(item.Content);
+                        <div class="row align-items-center py-3" style="@DataRowBackgroudColorKeyValues[(item.GetType().Name, $"{item.Id}")]"
+                             @onclick="@(args => ComponentOnClick(item))"
+                             @onmouseover="@(args => OnDataRowMouseOver(args, item.GetType().Name, item.Id))"
+                             @onmouseout="@(args => OnDataRowMouseOut(args, item.GetType().Name, item.Id))">
+                            <div class="col-md-10 h5 fw-bold" style="color:#198496;">
+                                <i class="fa-solid fa-genderless" /> @item.Title
+                            </div>
+                            <div class="col-md-2">
+                                @item.CreateDate.ToString("yyyy/MM/dd")
+                            </div>
+                        </div>
+                        @if (!item.Equals(Bulletins.Last()))
+                        {
+                            <Divider class="m-0" />
+                        }
+                    }
+                }
+            </div>
+            <div class="text-end">
+                <Button Color="Color.Secondary">
+                    <a href="central-message" class="fa-solid fa-plus" aria-current="page"> Click for More</a>
+                </Button>
+            </div>
         </div>
+
     </div>
 </div>
 
 <div class="row col-md-12 col-12 mt-5">
     <div class="col-md-4 col-12">
         <h2 class="fw-bold" style="color:#198754;">
-            交通資訊
+            Download Area
         </h2>
         <hr />
         <h5 class="fw-bold" style="color:#DC3545;">
-            中心地址：
         </h5>
-        <h6>
-            新竹縣竹北市光明二街81巷43號 (竹北市衛生所旁)
-        </h6>
+        <a href=""><img src="/images/donload.png" class="img-fluid" /></a>
+        <a href=""><img src="/images/ppidtni.png" class="img-fluid" /></a>
     </div>
+
     <div class="col-md-4 col-12">
         <h2 class="fw-bold" style="color:#198754;">
-            地圖位置
+            Lokasi
         </h2>
         <hr />
         <div>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d640.0967157390028!2d121.00615489012245!3d24.831936519504325!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34683774bac1ad8b%3A0xdf986a9e9ad9cf79!2z5paw56u557ij5b-X6aGY5pyN5YuZ5o6o5buj5Lit5b-D!5e0!3m2!1szh-TW!2stw!4v1724729584320!5m2!1szh-TW!2stw" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="img-fluid"></iframe>
         </div>
     </div>
-    <div class="col-md-4 col-12" style="align-content:center;">
-        <a herf="https://www.hsinchu.gov.tw/"><ImageViewer Url="/images/fronts/banner02.jpg" FitMode="ObjectFitMode.Contain" class="img-fluid" title="新竹縣政府社會處" /></a>
+    <div class="col-md-4 col-12">
+        <h2 class="fw-bold" style="color:#198754;">
+            Sosial Media
+        </h2>
+        <hr />
+        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+            <a href=""><img src="/images/instagram.png" class="img-fluid" style="width:25px;height:25px;" /></a>
+            <span style="margin-left: 10px;">Instagram : PuspenTNI</span>
+        </div>
+        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+            <a href=""><img src="/images/tw.png" class="img-fluid" style="width:25px;height:25px;" /></a>
+            <span style="margin-left: 10px;">Twitter : Puspen_TNI</span>
+        </div>
+        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+            <a href=""><img src="/images/youtubetni.png" class="img-fluid" style="width:25px;height:25px;" /></a>
+            <span style="margin-left: 10px;">YouTube : Puspen TNI</span>
+        </div>
+        <div style="display: flex; align-items: center; margin-bottom: 5px;">
+            <a href=""><img src="/images/fb.png" class="img-fluid" style="width:25px;height:25px;" /></a>
+            <span style="margin-left: 10px;">Facebook : Pusat Penerangan TNI</span>
+        </div>
+        <div style="display: flex; align-items: center;">
+            <a href=""><img src="/images/tiktok.png" class="img-fluid" style="width:25px;height:25px;" /></a>
+            <span style="margin-left: 10px;">TikTok : Puspentni</span>
+        </div>
     </div>
+
+
 </div>

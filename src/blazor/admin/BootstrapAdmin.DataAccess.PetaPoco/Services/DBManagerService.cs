@@ -38,7 +38,7 @@ internal class DBManagerService : IDBManager
     /// <param name="connectionName">連接字串鍵值</param>
     /// <param name="keepAlive"></param>
     /// <returns></returns>
-    public IDatabase Create(string connectionName = "VSPCDB", bool keepAlive = false)
+    public IDatabase Create(string connectionName = "MILITARYDB", bool keepAlive = false)
     {
         var conn = Configuration.GetConnectionString(connectionName) ?? throw new ArgumentNullException(nameof(connectionName));
 

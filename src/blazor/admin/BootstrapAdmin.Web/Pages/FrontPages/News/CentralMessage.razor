@@ -17,7 +17,7 @@
     </h2>
     <hr />
     <div class="table-responsive mt-3" style="font-size:large;">
-
+        59 menit lagi
         <AdminTable TItem="DataAccess.Models.AdminPages.News.Bulletin"
                     OnQueryAsync="@OnQueryAsync"
                     SearchModalTitle="@Localizer["SearchModalTitle"]"
@@ -38,12 +38,12 @@
                 <TableColumn @bind-Field="@context.Title" Searchable="true" />
             </TableColumns>
 
-            <CustomerSearchTemplate>
-                @if (context is BulletinSearchModel searchModel)
-                {
-                    <BulletinFrontSearch @bind-Value="@searchModel"></BulletinFrontSearch>
-                }
-            </CustomerSearchTemplate>
+            @* <CustomerSearchTemplate>
+            @if (context is BulletinSearchModel searchModel)
+            {
+            <BulletinFrontSearch @bind-Value="@searchModel"></BulletinFrontSearch>
+            }
+            </CustomerSearchTemplate> *@
         </AdminTable>
     </div>
 </div>

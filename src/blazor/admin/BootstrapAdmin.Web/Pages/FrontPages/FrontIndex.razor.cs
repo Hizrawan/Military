@@ -45,7 +45,12 @@ public partial class FrontIndex
 
     private string? SubscribeEmail { get; set; }
 
-
+    private static List<string> Images =>
+    [
+        "./images/timthumb.jpeg",
+        "./images/timthumb (1).jpeg",
+        "./images/timthumb (2).jpeg"
+    ];
     private Dictionary<(string tableName, string id), string> DataRowBackgroudColorKeyValues { get; set; } = [];
     [Inject]
     [NotNull]
